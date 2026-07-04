@@ -1,0 +1,395 @@
+/* RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* Mencegah scroll bar saat animasi */
+    color: #333;
+}
+
+.script-font {
+    font-family: 'Dancing Script', cursive;
+}
+
+/* PAGE CONTROL & TRANSITIONS */
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+#white-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#white-overlay.fade-in {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* BUTTONS */
+.btn-primary, .btn-secondary {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: white;
+    color: #2b193d;
+    transform: scale(1.05);
+}
+
+/* ================= PAGE 1 ================= */
+.starry-bg {
+    background: linear-gradient(to bottom, #0b0f19, #2b193d);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.content-p1 {
+    z-index: 2;
+    padding: 20px;
+    animation: floatUp 2s ease-out;
+}
+
+.content-p1 h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Fairy Dust / Stars Background */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: drift 50s linear infinite;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+@keyframes drift {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+@keyframes floatUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= PAGE 2 ================= */
+.pastel-bg {
+    background-color: #fceceb; /* Soft blush pink */
+    flex-direction: column;
+}
+
+.title-p2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #5a4a4a;
+    font-weight: 600;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, z-index 0s;
+    cursor: pointer;
+    position: relative;
+    width: 250px;
+}
+
+/* ================= PENGATURAN BINGKAI VIDEO ================= */
+/* Pengaturan Galeri */
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Jarak antar elemen sedikit dirapatkan agar muat */
+    flex-wrap: wrap; /* Akan turun ke baris bawah jika layar sempit */
+    perspective: 1000px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Base style untuk foto polaroid */
+.polaroid {
+    background: white;
+    padding: 12px 12px 35px 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, z-index 0s;
+    cursor: pointer;
+    position: relative;
+    width: 200px; /* Diperkecil sedikit agar 5 item bisa sejajar di desktop */
+}
+
+/* Base style untuk video */
+.video-frame {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease, z-index 0s;
+    position: relative;
+    width: 280px; /* Video sedikit lebih besar sebagai fokus utama */
+    z-index: 5;
+}
+
+/* Rotasi acak agar terlihat natural seperti foto yang disebar */
+.polaroid:nth-child(1) { transform: rotate(-5deg) translateY(15px); }
+.polaroid:nth-child(2) { transform: rotate(3deg) translateY(-5px); }
+.video-frame:nth-child(3) { transform: rotate(-1deg) translateY(-10px); }
+.polaroid:nth-child(4) { transform: rotate(-3deg) translateY(5px); }
+.polaroid:nth-child(5) { transform: rotate(4deg) translateY(10px); }
+
+/* Efek Hover (Membesar saat disentuh mouse) */
+.polaroid:hover, .video-frame:hover {
+    transform: scale(1.25) rotate(0deg) !important;
+    z-index: 20;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* Pengaturan Gambar & Video di dalam bingkai */
+.polaroid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.video-frame video {
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    background-color: #000;
+}
+
+.caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 12px;
+    color: #333;
+    line-height: 1.2;
+}
+
+/* Penyesuaian Responsif untuk Mobile */
+@media (max-width: 768px) {
+    .gallery { 
+        gap: 10px; 
+    }
+    .polaroid { 
+        width: 140px; 
+        padding: 8px 8px 25px 8px; 
+    }
+    .video-frame { 
+        width: 260px; /* Video tetap agak besar di mobile agar jelas */
+        padding: 10px 10px 30px 10px; 
+        order: -1; /* Opsional: Membuat video tampil di urutan paling atas saat di layar HP */
+    }
+    .polaroid img { 
+        height: 120px; 
+    }
+    .caption { 
+        font-size: 1.1rem; 
+    }
+    .polaroid:hover, .video-frame:hover { 
+        transform: scale(1.15) rotate(0deg) !important; 
+    }
+}
+
+/* Random rotations for polaroids */
+.polaroid:nth-child(1) { transform: rotate(-5deg); }
+.polaroid:nth-child(2) { transform: rotate(3deg) translateY(10px); }
+.polaroid:nth-child(3) { transform: rotate(-2deg); }
+
+.polaroid:hover {
+    transform: scale(1.3) rotate(0deg) !important;
+    z-index: 20;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 15px;
+    color: #333;
+}
+
+.content-p2 .btn-primary {
+    border-color: #5a4a4a;
+    color: #5a4a4a;
+    display: block;
+    margin: 50px auto 0 auto;
+}
+.content-p2 .btn-primary:hover {
+    background-color: #5a4a4a;
+    color: white;
+}
+
+/* ================= PAGE 3 ================= */
+.warm-bg {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 40px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.candle-emoji {
+    font-size: 5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+.candle-emoji:hover {
+    transform: scale(1.1);
+}
+
+#wish-instruction {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.love-letter {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+    min-height: 150px; /* mencegah layout lompat */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-p1 h1 { font-size: 3rem; }
+    .gallery { gap: 10px; }
+    .polaroid { width: 150px; padding: 10px 10px 30px 10px; }
+    .polaroid img { height: 130px; }
+    .caption { font-size: 1.1rem; }
+    .polaroid:hover { transform: scale(1.5) rotate(0deg) !important; }
+}
+
+/* ================= EFEK BINTANG JATUH (PAGE 3) ================= */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Tetap di belakang kartu surat (glass-card) */
+    overflow: hidden;
+    pointer-events: none; /* Agar tidak menghalangi klik pada lilin/tombol */
+}
+
+.shooting-stars .star {
+    position: absolute;
+    top: -50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    width: 2px;
+    height: 100px;
+    border-radius: 50%;
+    animation: fallingStar linear infinite;
+    opacity: 0;
+}
+
+/* Mengatur posisi, kecepatan, dan rotasi acak untuk masing-masing bintang */
+.shooting-stars .star:nth-child(1) { left: 10%; animation-duration: 3s; animation-delay: 0s; }
+.shooting-stars .star:nth-child(2) { left: 30%; animation-duration: 4s; animation-delay: 1.5s; }
+.shooting-stars .star:nth-child(3) { left: 50%; animation-duration: 2.5s; animation-delay: 3s; }
+.shooting-stars .star:nth-child(4) { left: 70%; animation-duration: 5s; animation-delay: 2s; }
+.shooting-stars .star:nth-child(5) { left: 90%; animation-duration: 3.5s; animation-delay: 0.5s; }
+
+@keyframes fallingStar {
+    0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Pastikan glass-card di Halaman 3 berada di atas bintang jatuh */
+#page3 .glass-card {
+    z-index: 10;
+}

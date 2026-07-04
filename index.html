@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 22nd Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="white-overlay" class="hidden"></div>
+
+    <audio id="bg-music" src="lover.mp3"></audio>
+
+    <section id="page1" class="page active starry-bg">
+        <div class="stars"></div>
+        <div class="content-p1">
+            <h1 class="script-font">Selamat Ulang Tahun yang ke-22, Rinanti Anjar Weni!</h1>
+            <p class="subtitle">5 Juli 2026 | Hope this year can be a great year!!!
+            <button id="btn-to-p2" class="btn-primary">Mulai Perjalanan Mesin Waktu 🚀</button>
+        </div>
+    </section>
+
+  <section id="page2" class="page hidden pastel-bg">
+        <div class="content-p2">
+            <h2 class="title-p2">Beberapa dari banyak alasan mengapa kamu lahir ke dunia...</h2>
+            
+            <div class="gallery">
+                <div class="polaroid">
+                    <img src="acong2.jpeg" alt="Alasan 1">
+                    <p class="caption">Membawa kehangatan untuk sekitarmu.</p>
+                </div>
+
+                <div class="polaroid">
+                    <img src="https://via.placeholder.com/300x300?text=Foto+2" alt="Alasan 2">
+                    <p class="caption">Senyummu yang mengalihkan duniaku.</p>
+                </div>
+                
+                <div class="video-frame">
+                    <video controls poster="https://via.placeholder.com/320x180?text=Thumbnail+Video">
+                        <source src="video 1.mp4" type="video/mp4">
+                        Browser kamu tidak mendukung pemutar video.
+                    </video>
+                    <p class="caption">Caramu menyayangi dengan tulus.</p>
+                </div>
+
+                <div class="polaroid">
+                    <img src="https://via.placeholder.com/300x300?text=Foto+3" alt="Alasan 3">
+                    <p class="caption">Menjadi versi terbaik dari dirimu.</p>
+                </div>
+
+                <div class="polaroid">
+                    <img src="acong1.jpeg" alt="Alasan 4">
+                    <p class="caption">Menciptakan tawa yang tak terlupakan.</p>
+                </div>
+            </div>
+
+            <button id="btn-to-p3" class="btn-primary">Lihat Kejutan Terakhir 🎁</button>
+        </div>
+    </section>
+
+<!-- HALAMAN 3: The Digital Wish Jar -->
+    <section id="page3" class="page hidden warm-bg">
+        
+        <!-- Elemen untuk Bintang Jatuh -->
+        <div class="shooting-stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+
+        <div class="glass-card">
+            <div id="candle-container">
+                <p id="wish-instruction">Make a wish and click the candle...</p>
+                <!-- Emoji Lilin Menyala -->
+                <div id="candle" class="candle-emoji">🎂🕯️</div>
+            </div>
+
+            <div id="letter-container" class="hidden">
+                <div id="typewriter-text" class="love-letter"></div>
+                <!-- Karena lagu sudah berputar dari Page 1, tombol ini sekarang berfungsi untuk menjeda/melanjutkan -->
+                <button id="btn-play-music" class="btn-secondary hidden">Jeda Lagu ⏸️</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
